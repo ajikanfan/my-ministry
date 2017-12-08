@@ -1,0 +1,1183 @@
+/*!
+  Aaron Matthews Front End Web Developer
+  URL ........... http://www.dancingpixels.co.za
+  Github ........ https://github.com/ajikanfan
+  CodePen ....... http://codepen.io/ajikanfan/
+  Authors ....... Aaron Matthews
+*/
+
+/* Table of Contents
+   ----------------------------------------
+    SASS
+      Variables
+      Mixins
+    Boilerplate
+    Typography
+    Links
+    General Page Elements
+      One Page Scroll
+      Flexbox
+      Subsidiary
+      My Custom Elements
+    Plugins
+    Bootstrap Reset
+    Navbar
+    Home Section
+    Home About Section
+    Home Message Section
+    Page Index Links Section
+    Word Of The Month
+    Contact Section
+    Contact Section
+    Get Prayer Section
+    Names of God
+    Do I Need Deliverance
+    Self Deliverance
+   ---------------------------------------- */
+
+/* SASS
+   ---------------------------------------- */
+// Variables
+$nb: !important;
+$primary-color: deepSkyBlue;
+$secondary-color: gold;
+$tertiary-color: #a90329;
+$off-white: #dfdfdf;
+$font-black: #555;
+$bg_semi_white: rgba(255,255,255,.45);
+$bg_semi_black: rgba(0,0,0,.65);
+$bevel-text-shadow: 0 1px rgba(0,0,0,.5),
+                    0 -1px rgba(255,255,255,.7),
+                    0 4px 1px rgba(0,0,0,.15);
+$page_margin: 3rem;
+$borderRadius: 3px;
+
+// Mixins
+@mixin vendor-prefix($name, $value) {
+  @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+    #{$vendor}#{$name}: #{$value};
+  }
+}
+
+/* Boilerplate
+   ---------------------------------------- */
+html body {
+  background: $off-white url(../images/blurred_bg.jpg) no-repeat center center / cover;
+  background-attachment: fixed;
+}
+
+p {
+  margin: .2em;
+}
+
+/* Typography
+   ---------------------------------------- */
+body h1 {
+  color: $primary-color;
+  margin: 0;
+  text-align: center;
+  text-shadow: $bevel-text-shadow;
+  ~ p {
+    margin: 0;
+    text-align: center;
+  }
+}
+
+html,
+body,
+p,
+input,
+select,
+textarea,
+div,
+li {
+  cursor: default;
+  font-family: 'PT Sans', sans-serif;
+}
+
+body {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $secondary-color;
+    margin: 0;
+    // text-shadow: $bevel-text-shadow;
+    text-transform: capitalize;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  cursor: default;
+  font-family: 'Hammersmith One', sans-serif;
+  @include vendor-prefix('hyphens','none');
+}
+
+p {
+  color: $off-white;
+}
+
+.jesus {
+  color: crimson;
+}
+
+a {
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.fa {
+  font-family: 'FontAwesome' $nb;
+  &::before {
+    font-family: 'FontAwesome' $nb;
+  }
+}
+
+/* Links
+   ---------------------------------------- */
+a {
+  text-decoration: none;
+}
+
+/* General Page Elements
+   ---------------------------------------- */
+section {
+  height: 100vh;
+  left: 0 $nb;
+  right: 0 $nb;
+  width: 100% $nb;
+}
+html {
+  height: 100%;
+}
+body {
+  padding: 0;
+  position: relative;
+  margin: 0;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  height: 100% !important;
+  height: 100%;
+  margin: 0 auto; 
+//  overflow: hidden;
+}
+
+.main {
+  float: left;
+  width: 100%;
+  margin: 0 auto;
+}
+.clear {
+  width: auto;
+}
+
+header {
+  position: relative;
+  z-index: 10;
+}
+
+body hr {
+  border-style: dotted;
+  position: relative;
+  &::after {
+    background: $off-white;
+    /* border: 1px solid $off-white; */
+    border-radius: 50%;
+    // content: 'ᴤ';
+    // content: '\8224';
+    display: block;
+    height: 15px;
+    line-height: 15px;
+    margin-left: -8px;
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    text-align: center;
+    width: 15px;
+  }
+}
+
+.verse {
+  border-left: 2px solid $secondary-color;
+  display: block;
+  font-family: 'Times New Roman', sans-serif;
+  font-style: italic;
+  margin: 5px 0;
+  padding-left: 10px;
+  a {
+    display: block;
+    color: $secondary-color;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+.background_shade {
+  background-color: rgba(0,0,0,.3);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+body {
+  main,
+  footer {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.cstm_divider {
+  color: white;
+  display: block;
+  clear: both;
+  margin: 15px 0;
+}
+
+.ops-section {
+  height: 100vh;
+}
+
+// One Page Scroll
+.main {
+  section  {
+    overflow: hidden;
+    &.page3 .page_container {
+      overflow: hidden;
+      width: 500px;
+      right: -285px;
+    }
+  }
+  .page_container {
+    position: relative;
+    top: 25%;
+    margin: 0 auto 0;
+    max-width: 950px;
+    z-index: 3;
+  }
+}
+
+body .onepage-pagination {
+  background-color: rgba(255,255,255,.5);
+  border-radius: 25px;
+  padding: 5px 6px 5px 0;
+  @include vendor-prefix('transition','.2s background ease-in-out');
+  &:hover {
+    background-color: $off-white;
+  }
+  li {
+    a {
+      &::before {
+        background-color: transparent;
+        height: 10px;
+        border: 1px solid #999;
+        border-radius: 50%;
+        margin-top: -4px;
+        left: 8px;
+        width: 10px;
+      }
+      &.active {
+        &::before {
+          background-color: $tertiary-color;
+          border-color: $tertiary-color;
+        }
+      }
+    }
+  }
+}
+
+body {
+  .disabled-onepage-scroll {
+    .onepage-wrapper {
+      section {
+        min-height: 100%;
+        height: auto;
+      }
+    }
+    .main {
+      section {
+        .page_container  {
+          padding: 20px;
+          margin-top: 150px;
+          @include vendor-prefix('box-sizing','border-box');
+        }
+        .page3 {
+          .page_container  {
+            margin-top: 150px;
+            margin-right: auto;
+            margin-left: auto;
+            right: 0;
+            padding: 20px;
+            width: 90%;
+            @include vendor-prefix('box-sizing','border-box');
+          }
+        }
+      }
+    }
+  }
+}
+
+// Flexbox
+.aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aligner-inner {
+  display: block;
+}
+
+// Subsidiary
+.subsidiary {
+  background-color: $off-white;
+  border-radius: 0 5px 0 0;
+  height: 30px;
+  padding: 0 15px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 550px;
+  z-index: 200;
+  &:hover {
+    height: auto $nb;
+    padding-bottom: 10px;
+  }
+  h4 {
+    font-size: 1em;
+    font-weight: lighter;
+    line-height: 30px;
+  }
+  h4,
+  a {
+    color: $font-black;
+  }
+  p {
+    color: $font-black;
+    font-size: .8em;
+    margin: 0;
+  }
+}
+
+// My Custom Elements
+.my_cstm_btn {
+    background-color: $off-white;
+    border: 1px solid $secondary-color;
+    border-radius: $borderRadius;
+    box-shadow: inset 1px 1px rgba(0,0,0,.1),
+                inset 0 0 rgba(0,0,0,.1),
+                inset -1px -1px rgba(0,0,0,.1),
+                inset 0 1px rgba(0,0,0,.1),
+                inset 1px 0 rgba(0,0,0,.1),
+                inset 0 -1px rgba(0,0,0,.1),
+                inset -1px 0 rgba(0,0,0,.1),
+                inset -1px 1px rgba(0,0,0,.1),
+                inset 1px -1px rgba(0,0,0,.1),
+                0 3px 2px -2px rgba(0,0,0,.6);
+    color: $font-black;
+    cursor: pointer;
+    font-size: 1.5em;
+    // min-height: 40px;
+    // line-height: 40px;
+    margin: 20px;
+    padding: 14px 10px;
+    text-align: center;
+    text-shadow: 0 1px white;
+    width: auto;
+    @include vendor-prefix('transition','transform .2s ease-in, box-shadow .5s ease-in, background .2s ease-out');
+    &:hover {
+      box-shadow: inset 1px 1px rgba(0,0,0,.1),
+                  inset 0 0 rgba(0,0,0,.1),
+                  inset -1px -1px rgba(0,0,0,.1),
+                  inset 0 1px rgba(0,0,0,.1),
+                  inset 1px 0 rgba(0,0,0,.1),
+                  inset 0 -1px rgba(0,0,0,.1),
+                  inset -1px 0 rgba(0,0,0,.1),
+                  inset -1px 1px rgba(0,0,0,.1),
+                  inset 1px -1px rgba(0,0,0,.1),
+                  0 6px 2px -2px rgba(0,0,0,.3);
+      @include vendor-prefix('transform','scale(1.05)');
+    }
+    &:active {
+      background-color: darken($off-white, 15%);
+      color: darken($font-black, 5%);
+    }
+}
+
+.my_popup {
+  background-color: $off-white;
+  border-radius: $borderRadius;
+  display: none;
+  height: 550px;
+  margin: -275px auto 0 auto;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  left: 0;
+  resize: both;
+  width: 500px;
+  z-index: 1002;
+  .popup-header {
+    color: $font-black;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    text-shadow: 0 1px white;
+  }
+  .popup-body {
+    height: 500px;
+    overflow: auto;
+    padding: 0 20px;
+  }
+  p {
+    color: $font-black;
+    text-align: left;
+  }
+}
+
+/* Plugins
+   ---------------------------------------- */
+/* Nanobarjs */
+.nanobar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  div {
+    background-color: $primary-color;
+    width: 99.99%;
+  }
+}
+
+/* Bootstrap Reset
+   ---------------------------------------- */
+.row {
+  margin-right: initial $nb;
+  margin-left: initial $nb;
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;    
+}
+
+/* Navbar
+   ---------------------------------------- */
+div.topbar {
+  background-color: darken($tertiary-color, 10%);
+  height: 30px;
+  position: fixed;
+  top: 4px;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  a {
+    color: $off-white;
+    font-weight: normal;
+    line-height: 30px;
+    margin-left: 15px;
+    text-transform: uppercase;
+  }
+}
+
+body {
+  .navbar-default {
+    background-color: $tertiary-color;
+    border: none !important;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    box-shadow:
+      inset 0 -1px $off-white,
+      0 2px 2px rgba(0,0,0,.2);
+    position: fixed;
+    top: 34px;
+    width: 100%;
+    z-index: 10;
+  }
+  .navbar-brand {
+    color: $primary-color $nb;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 10px;
+    text-align: center;
+    text-shadow: 0 -1px rgba(255,255,255,0.45),0 1px rgba(0,0,0,0.4);
+    text-transform: capitalize;
+    width: auto;    
+  }
+}
+
+// @transition_menu: border .2s ease-in-out, background-color .2s ease-in, color .1s ease, box-shadow .1s ease;
+body .navbar-default .navbar-nav {
+  background-color: transparent;
+  border: none;
+  box-shadow: 0 1px 1px rgba(0,0,0,.3),
+              inset 0 -1px $off-white;
+  margin-bottom: 0;
+  .active a {
+    background-color: rgba(0,0,0,.1);
+  }
+  li:hover > a,
+  .active > a {
+    background-color: rgba(0,0,0,.1);
+    box-shadow: inset 0 -1px $primary-color;
+    color: $primary-color;
+  }
+  li {
+    border-bottom-width: 0;
+    border-color: transparent;
+    border-left-width: thin;
+    border-right-width: thin;
+    border-style: solid;
+    border-top-width: thin;
+    // .transition_prefixes(@transition_menu);
+    .caret {
+      margin-left: 3px;
+      transform-origin: center center;
+      @include vendor-prefix('transition','transform .2s ease-in-out');
+    }
+    &:hover {
+      .caret {
+        @include vendor-prefix('transform','rotate(180deg);');
+      }
+    }
+    a {
+      color: $off-white;
+      // .transition_prefixes(@transition_menu);
+      &:hover {
+        color: white;
+      }
+    }
+    &.active {
+      border-top-color: rgba(0,0,0,.3);
+      border-right-color: rgba(255,255,255,.3);
+      border-left-color: rgba(0,0,0,.3);
+    }
+    .dropdown-menu{
+      background-color: darken($tertiary-color, 10%);
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 5px 4px -3px rgba(0,0,0,0.6);
+      padding: 0;
+      .divider {
+        margin: 0;
+      }
+      li a {
+        color: $off-white;
+      }
+    }
+    li:hover {
+      a {
+        background-color: darken($tertiary-color, 20%);
+        box-shadow: none;
+      }
+    }
+  }
+  > li > a:hover,
+  > li > a:focus {
+    background-color: transparent;
+  }
+  a {
+    font-weight: bold;
+    text-transform: lowercase;
+  }
+}
+
+/* Tickertape */
+form[name="marquee1"] {
+  display: inline;
+  input {
+    background: inherit;
+    border: none;
+    clear: none;
+    color: $off-white;
+    cursor: default;
+    float: right;
+    margin: 3px 15px 0;
+    width: 83%;
+  }
+}
+
+/* Home Section
+   ---------------------------------------- */
+.home {
+  background: black url(/images/blurred_bg.jpg) no-repeat center center / cover;
+  //height: calc(100vh - 85px);
+  overflow: hidden;
+  position: relative;
+  .main_copy_holder {
+    text-align: center;
+  }
+  h1 {
+    border-bottom: thin solid #333;
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 10px;
+    width: auto;
+      ~ p {
+      color: #444;
+      font-size: .75em;
+      margin-top: 6px;
+      a {
+        color: #333;
+        font-weight: bold;
+      }
+    }
+  }
+  .landing_subheading {
+    color: $secondary-color;
+    font-weight: bold;
+    font-size: 1.5em;
+    letter-spacing: 1.8px;
+  }
+  h1,
+  .landing_subheading {
+    text-shadow: 0 -1px rgba(255,255,255,.45),
+                 0 1px rgba(0,0,0,.4);
+    text-transform: capitalize;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .home { 
+    video {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .home {
+    video {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+    }
+    .container-fluid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      .row {
+        > div {
+          padding: 0 .2rem;
+        }
+      }
+    }
+    .main_copy_holder {
+      margin-top: -75px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      * {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.home_bottom_inner {
+  background-color: $bg_semi_black;
+  height: 100px;
+  * {
+    color: $off-white;
+    text-align: center;
+  }
+}
+
+.home_quick_links {
+  overflow: hidden;
+  padding: 0 15px 0 30px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  p {
+    color: $primary-color;
+    font-size: .8em;
+    line-height: 2em;
+    margin: 0;
+    position: relative;
+    z-index: 3;
+  }
+  a {
+    &:hover {
+      color: $primary-color;
+    }
+    color: white;
+  }
+  &::before {
+    background-color: rgba(0,0,0,0.3);
+    border-left: 1px solid $primary-color;
+    content: '';
+    height: 228px;
+    position: absolute;
+    top: -15px;
+    left: 7px;
+    width: 500px;
+    @include vendor-prefix('transform','rotate(20deg)');
+  }
+}
+
+/* Home About Section
+   ---------------------------------------- */
+.home_about {
+  background: fixed url(../images/about_us.jpeg) no-repeat center center / cover;
+  .col-md-4 {
+    background-color: $bg_semi_black;
+    height: 100vh;
+    padding-right: 50px;
+  }
+}
+
+/* Home Message Section
+   ---------------------------------------- */
+.monthly_word {
+  background: fixed url(../images/word_of_the_month.jpeg) no-repeat center center / cover;
+  .main_post_img {
+    width: 300px;
+  }
+  .col-md-4 {
+    img {
+      border-radius: $borderRadius;
+      height: auto;
+      margin: 10px auto;
+    }
+  }
+  .row {
+    &:last-child {
+      img {
+        display: block;
+        margin-bottom: 20px;
+        width: 200px;
+      }
+    }
+  }
+  hr {
+    margin: 0 auto;
+    width: 85%;
+  }
+}
+
+/* Page Index Links Section
+   ---------------------------------------- */
+.page_index_links {
+  .container-fluid {
+    padding: 0;
+  }
+  .page_section_popup {
+    align-items: center;
+    background-color: $off-white;
+    border-radius: 10px;
+    box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
+    display: flex;
+    height: 80%;
+    justify-content: center;
+    padding: 10px;
+    position: absolute;
+    top: -100%;
+    left: 10%;
+    text-align: left;
+    width: 80%;
+    z-index: 2;
+    @include vendor-prefix('filter','grayscale(100%) blur(3px)');
+    @include vendor-prefix('transition','filter 1s .3s ease-in-out, top .4s .25s ease-in-out');
+    h3 {
+      color: $tertiary-color;
+      font-size: 1.2em;
+      text-align: center;
+    }
+    hr {
+      border-color: darkGrey;
+    }
+    p {
+      color: $font-black;
+    }
+    .button {
+      background-color: $primary-color;
+      color: $font-black;
+      font-weight: bold;
+      padding: 15px 0;
+      text-align: center;
+    }
+  }
+  .popup_holder {
+    display: block;
+  }
+  .col-md-4 {
+    background-color: #eee;
+    height: 50vh;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    @include vendor-prefix('transition','.2s background ease-in');
+    &:first-child,
+    &:nth-child(2),
+    &:nth-child(3) {
+      border-bottom: thin solid rgba(0,0,0,.1);
+    }
+    &:hover {
+      .index_title_holder {
+        top: 200%;
+      }
+      .page_section_popup {
+        top: 0;
+        @include vendor-prefix('filter','grayscale(0) blur(0)');
+      }
+    }
+    &:first-child,
+    &:nth-child(3),
+    &:nth-child(5) {
+      background-color: #e7e7e7;
+    }
+  }
+  .fa {
+    &::before {
+      background-color: $tertiary-color;
+      border-radius: 50%;
+      color: white;
+      display: inline-block;
+      font-size: 1.2em;
+      height: 25px;
+      line-height: 25px;
+      margin-bottom: 10px;
+      text-align: center;
+      width: 25px;
+    }
+  }
+  .index_title_holder {
+    background-color: $off-white;
+    border-radius: 5px;
+    box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
+    margin-top: -50px;
+    padding: 15px 0;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 80%;
+    z-index: 2;
+    @include vendor-prefix('transition','.4s ease-in-out');
+    h2,
+    p {
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
+    h2 {
+      color: $tertiary-color;
+      font-size: 1.4em;
+      margin-bottom: 5px;
+    }
+    p {
+      color: $font-black;
+      font-size: .9em;
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* Word Of The Month
+   ---------------------------------------- */
+.monthly_word {
+  .section {
+    background-color: $bg_semi_black;
+    border-radius: 5px;
+    margin-top: -50px;
+    padding: 15px 10px;
+  }
+}
+.main_message {
+  margin-bottom: 25px;
+  max-height: 300px;
+  overflow-y: auto;
+  img {
+    float: left;
+    margin-right: 10px;
+    width: 200px;
+  }
+  h2 {
+    margin-bottom: 10px;
+  }
+}
+
+/* Contact Section
+   ---------------------------------------- */
+.get_prayer {
+  background: fixed url(../images/contact_us.jpeg) no-repeat center center / cover; 
+}
+.crop_text {
+  margin: 0 $page_margin;
+  &:first-child {
+    margin-left: $page_margin;
+  }
+  &:last-child{
+    margin-right: $page_margin;
+  }
+  ~ p {
+    margin-left: $page_margin;
+  }
+}
+
+/* Contact Section
+   ---------------------------------------- */
+.contact_form form {
+  margin-right: $page_margin;
+}
+
+.contact_description {
+  padding: $page_margin;
+}
+
+/* Get Prayer Section
+   ---------------------------------------- */
+.get_prayer {
+  .prayer_offer {
+    font-weight: bold;
+    margin: 5px 0;
+    text-align: center;
+  }
+  p {
+    text-align: left;
+  }
+  form {
+    border: 1px solid $off-white;
+    display: block;
+    margin: 50px auto 0 auto;
+    width: 500px;
+  }
+  input {
+    border-color: transparent;
+    display: inline-block;
+    margin-bottom: -1px;
+    width: 247px;
+    &:first-of-type {
+      border-right-color: $off-white;
+    }
+  }
+  textarea {
+    border-top-color: $off-white;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    min-height: 150px;
+    width: 100%;
+  }
+  input,
+  textarea {
+    background-color: transparent;
+    border-style: solid;
+    border-width: 1px;
+    color: $off-white;
+  }
+}
+
+/* Names of God
+   ---------------------------------------- */
+.names_pool {
+  display: block;
+  list-style: none;
+  margin: 0 10%;
+  padding: 0;
+  text-align: center;
+  li {
+    background-color: #dfdfdf;
+    border: 1px solid #ffd700;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px rgba(0,0,0,.05),
+                inset 0 0 rgba(0,0,0,.05),
+                inset -1px -1px rgba(0,0,0,.05),
+                inset 0 1px rgba(0,0,0,.05),
+                inset 1px 0 rgba(0,0,0,.05),
+                inset 0 -1px rgba(0,0,0,.05),
+                inset -1px 0 rgba(0,0,0,.05),
+                inset -1px 1px rgba(0,0,0,.05),
+                inset 1px -1px rgba(0,0,0,.05),
+                0 4px 2px -3px rgba(0,0,0,.3);
+    color: #454545;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    margin: 0 2px 6px 2px;
+    padding: 5px 8px;
+    text-shadow: 1px 1px white;
+    // .transition_prefixes(box-shadow .2s ease);
+    &:active,
+    &:focus {
+      box-shadow: inset 1px 1px rgba(0,0,0,.1),
+                  inset 0 0 rgba(0,0,0,.1),
+                  inset -1px -1px rgba(0,0,0,.1),
+                  inset 0 1px rgba(0,0,0,.1),
+                  inset 1px 0 rgba(0,0,0,.1),
+                  inset 0 -1px rgba(0,0,0,.1),
+                  inset -1px 0 rgba(0,0,0,.1),
+                  inset -1px 1px rgba(0,0,0,.1),
+                  inset 1px -1px rgba(0,0,0,.1),
+                  0 3px 2px -2px rgba(0,0,0,.6);
+    }
+  }
+}
+
+.sort_names {
+  background-color: $off-white;
+  border: 1px solid $secondary-color;
+  border-radius: $borderRadius;
+  box-shadow: inset 1px 1px rgba(0,0,0,.1),
+              inset 0 0 rgba(0,0,0,.1),
+              inset -1px -1px rgba(0,0,0,.1),
+              inset 0 1px rgba(0,0,0,.1),
+              inset 1px 0 rgba(0,0,0,.1),
+              inset 0 -1px rgba(0,0,0,.1),
+              inset -1px 0 rgba(0,0,0,.1),
+              inset -1px 1px rgba(0,0,0,.1),
+              inset 1px -1px rgba(0,0,0,.1),
+              0 3px 2px -2px rgba(0,0,0,.6);
+  display: inline-block;
+  padding: 5px;
+  @include vendor-prefix('transition','background .2s ease-in');
+  div {
+    display: inline-block;
+    color: $font-black;
+    padding: 10px 5px;
+    text-align: center;
+    text-shadow: 0 1px white;
+    &:active {
+      background-color: darken($off-white, 5%);
+    }
+    &:nth-child(2n) {
+      opacity: .3;
+    }
+    &:last-child {
+      color: $tertiary-color;
+    }
+  }
+  .button {
+    cursor: pointer;
+  }
+}
+
+.names_of_god {
+  text-align: center;
+  width: 100%;
+  input,
+  label {
+    display: inline-block;
+  }
+}
+
+.names_def {
+  background-color: $off-white;
+  box-shadow: 0 4px 2px -3px rgba(0,0,0,.3);
+  border-radius: 3px;
+  min-height: 150px;
+  p,
+  .definition {
+    color: #333;
+    font-size: .8em;
+    text-align: left;
+    margin: 0;
+  }
+  .name {
+    border-bottom: 1px solid #999;
+    font-size: 1.25em;
+    font-weight: bold;
+    margin: 6px 0;
+    text-align: left;
+  }
+  .definition {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+}
+
+.names_side_note p {
+  color: $font-black;
+  font-size: .8em;
+  margin-bottom: 0;
+  padding: 10px 0;
+  text-align: center;
+}
+
+/* Do I Need Deliverance
+   ---------------------------------------- */
+.do_i_need_deliverance {
+  p {
+    text-align: left;
+    text-indent: 0;
+  }
+}
+
+/* Self Deliverance
+   ---------------------------------------- */
+.self_deliverance {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  .modal-title {
+    background-color: $primary-color;
+  }
+}
+
+.popup_behind {
+  background-color: $bg_semi_black;
+  display: none;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1001;
+}
+
+.close_pop_up {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 5;
+}
+
+.curses_prayer,
+.familiar_spirits_prayer,
+.jezebel_prayer,
+.occult_prayer,
+.salvation_prayer,
+.satanism_prayer,
+.sexual_bondage_prayer,
+.soul_ties_prayer {
+  display: none;
+}
+
+.benediction {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center $nb;
+  text-indent: 0;
+}

@@ -1,0 +1,20 @@
+#color, #centered {
+  padding: 1em;
+  background: #fff;
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+#color .nanobar, #centered .nanobar {
+  margin-bottom: 2em;
+}
+
+#color .nanobar .bar {
+  height: 9px;
+  width: 99.99%;
+}
+
+.nanobar {
+  position: fixed;
+}

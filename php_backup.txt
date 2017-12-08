@@ -1,0 +1,56 @@
+
+              <?php
+                // Pull In Blog Posts Content
+                function postExcerpt($fileName) {
+                  $blog_post_page = $fileName;
+                  $html = file_get_html($blog_post_page);
+                  // for each loop which works only on array and arrays of objects
+                  foreach($html->find('div.article') as $article) {
+                    // post_title post_copy
+                    $item['post_title'] = $article->find('div.post_title', 0)->plaintext;
+                    $item['post_copy'] = $article->find('div.post_copy', 0)->plaintext;
+                    $article[] = $item;
+                  }
+                  echo($html);
+                }
+              ?>
+              <div class="col-xs-6 col-md-3">
+                <div class="crop_text" id="firstPost">
+                  <?php
+                    postExcerpt('includes/blog_posts.php');
+                  ?>
+                </div> <!-- /.crop_text -->
+                <?php
+                  echo  "<p>To continue reading this post <a href=includes/blog_posts.php>click here</a>.</p>";
+                ?>
+              </div> <!-- /.col-xs-6 col-md-3 -->
+              <div class="col-xs-6 col-md-3">
+                <div class="crop_text" id="secondPost">
+                  <?php
+                    postExcerpt('includes/blog_posts.php');
+                  ?>
+                </div> <!-- /.crop_text -->
+                <?php
+                  echo  "<p>To continue reading this post <a href=includes/blog_posts.php>click here</a>.</p>";
+                ?>
+              </div> <!-- /.col-xs-6 col-md-3 -->
+              <div class="col-xs-6 col-md-3">
+                <div class="crop_text" id="thirdPost">
+                  <?php
+                    postExcerpt('includes/blog_posts.php');
+                  ?>
+                </div> <!-- /.crop_text -->
+                <?php
+                  echo  "<p>To continue reading this post <a href=includes/blog_posts.php>click here</a>.</p>";
+                ?>
+              </div> <!-- /.col-xs-6 col-md-3 -->
+              <div class="col-xs-6 col-md-3">
+                <div class="crop_text" id="fourthPost">
+                  <?php
+                    postExcerpt('includes/blog_posts.php');
+                  ?>
+                </div> <!-- /.crop_text -->
+                <?php
+                  echo  "<p>To continue reading this post <a href=includes/blog_posts.php>click here</a>.</p>";
+                ?>
+              </div> <!-- /.col-xs-6 col-md-3 -->
